@@ -16,11 +16,13 @@ function setup() {
 
 function modelReady(){
   console.log('model ready'); //lets yk in the console if the cloud server is ready for poses
+  select('#status').html('Model Loaded'); //lets yk on the web page if model is loaded 
+}
 
 function draw() {
   image(video,0,0);
   
-  let d = dist(noseX, noseY, eyerX, eyerX); //makes stay rationed in the Z direction
+  let d = dist(noseX, noseY, eyerX, eyerY); //makes stay rationed in the Z direction
    //dist calculates the distance between the values u input using this equation d=√((x_2-x_1)²+(y_2-y_1)²)
   console.log(d);
   //making the filter will make it into buttons so will have to use document .getlelement stuff and inside functions,
@@ -31,20 +33,19 @@ function draw() {
   ellipse(noseX, noseY, d); //(x,y,width) nose :)
   fill(0,0,255);
   ellipse(eyerX,eyerY, d); // right eye:)
-  
-
 }
 
 function gotPoses(poses){
   if (poses.length > 0) {
-    let nX = poses[0].pose.keypoints[0].position.x;
+   //person 1 (aka 0 cuz its programming)-> the pose of that person-> and within that which body part-> position of the body part -> and then we want the x or y value
+    let nX = poses[0].pose.keypoints[0].position.x; 
     let nY = poses[0].pose.keypoints[0].position.y;
     let eX = poses[0].pose.keypoints[1].position.x;
     let eY = poses[0].pose.keypoints[1].position.y;
     noseX = lerp(noseX, nX, 0.5);
     noseY = lerp(noseY, nY, 0.5);
-    eyelX = lerp(eyelX, eX, 0.5);
-    eyelY = lerp(eyelY, eY, 0.5);
+    eyerX = lerp(eyelX, eX, 0.5);
+    eyerY = lerp(eyelY, eY, 0.5);
   }
 }
   
