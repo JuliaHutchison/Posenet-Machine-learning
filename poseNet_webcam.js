@@ -5,6 +5,8 @@ let noseX = 0;
 let noseY= 0;
 let eyerX= 0; //right eye
 let eyerY= 0;
+let eyelX= 0; //left eye
+let eyelY= 0;
 
 function setup() {
   createCanvas(640, 480);
@@ -15,7 +17,7 @@ function setup() {
 }
 
 function modelReady(){
-  console.log('model ready'); //lets yk in the console if the cloud server is ready for poses
+  //console.log('model ready'); //lets yk in the console if the cloud server is ready for poses
   select('#status').html('Model Loaded'); //lets yk on the web page if model is loaded 
 }
 
@@ -32,7 +34,9 @@ function draw() {
   fill(255,0,0); 
   ellipse(noseX, noseY, d); //(x,y,width) nose :)
   fill(0,0,255);
-  ellipse(eyerX,eyerY, d); // right eye:)
+  ellipse(eyerX, eyerY, d); // right eye:)
+  fill(0,0,255);
+  ellipse(eyelX, eyelY, d); // left eye:)
 }
 
 function gotPoses(poses){
@@ -40,12 +44,16 @@ function gotPoses(poses){
    //person 1 (aka 0 cuz its programming)-> the pose of that person-> and within that which body part-> position of the body part -> and then we want the x or y value
     let nX = poses[0].pose.keypoints[0].position.x; 
     let nY = poses[0].pose.keypoints[0].position.y;
-    let eX = poses[0].pose.keypoints[1].position.x;
-    let eY = poses[0].pose.keypoints[1].position.y;
+    let erX = poses[0].pose.keypoints[1].position.x;//right
+    let erY = poses[0].pose.keypoints[1].position.y;
+    let elX = poses[0].pose.keypoints[2].position.x;//left
+    let elY = poses[0].pose.keypoints[2].position.y;
     noseX = lerp(noseX, nX, 0.5);
     noseY = lerp(noseY, nY, 0.5);
-    eyerX = lerp(eyerX, eX, 0.5);
-    eyerY = lerp(eyerY, eY, 0.5);
+    eyerX = lerp(eyerX, erX, 0.5);//right
+    eyerY = lerp(eyerY, erY, 0.5);
+    eyelX = lerp(eyelX, elX, 0.5);// left 
+    eyelY = lerp(eyelY, elY, 0.5);
   }
 }
   
