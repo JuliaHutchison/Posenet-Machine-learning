@@ -44,8 +44,8 @@ function gotPoses(poses){
     let eY = poses[0].pose.keypoints[1].position.y;
     noseX = lerp(noseX, nX, 0.5);
     noseY = lerp(noseY, nY, 0.5);
-    eyerX = lerp(eyelX, eX, 0.5);
-    eyerY = lerp(eyelY, eY, 0.5);
+    eyerX = lerp(eyerX, eX, 0.5);
+    eyerY = lerp(eyerY, eY, 0.5);
   }
 }
   
