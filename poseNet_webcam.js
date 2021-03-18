@@ -41,7 +41,7 @@ function gotPoses(poses){
 }
 
 function draw() {
-  //image(video,0,0); //image (content, x coor , y coor)
+  image(video,0,0); //image (content, x coor , y coor)
   let d = dist(noseX, noseY, eyerX, eyerY); //makes stay rationed in the Z direction
    //dist calculates the distance between the values u input using this equation d=√((x_2-x_1)²+(y_2-y_1)²)
   //console.log(d);
@@ -49,12 +49,13 @@ function draw() {
   //and withing them if then statements within them
   
   //the stuff that will go on the face
+  let w = d-30;
   fill(255,0,0); 
   ellipse(noseX, noseY, d); //(x,y,width) nose :)
-  fill(0,0,255);
-  ellipse(eyerX,eyerY, d); // right eye:)
-  fill(0,0,255);
-  ellipse(eyelX,eyelY, d) //left eye :)
+  fill(0,0,155);
+  ellipse(eyerX,eyerY, w); // right eye:)
+  fill(0,0,155);
+  ellipse(eyelX,eyelY, w) //left eye :)
   
 }
 // console.log("hello world");
