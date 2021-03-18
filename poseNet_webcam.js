@@ -5,8 +5,8 @@ let noseX = 0;
 let noseY= 0;
 let eyerX= 0; //right eye
 let eyerY= 0;
-let eyelX =0; //left eye
-let eyely =0;
+let eyelX = 0; //left eye
+let eyelY = 0;
 
 function setup() {
   createCanvas(640, 480);
@@ -21,24 +21,7 @@ function modelReady(){
   select('#status').html('Model Loaded'); //lets yk on the web page if model is loaded 
 }
 
-function draw() {
-  image(video,0,0);
-  
-  let d = dist(noseX, noseY, eyerX, eyerY); //makes stay rationed in the Z direction
-   //dist calculates the distance between the values u input using this equation d=√((x_2-x_1)²+(y_2-y_1)²)
-  //console.log(d);
-  //making the filter will make it into buttons so will have to use document .getlelement stuff and inside functions,
-  //and withing them if then statements within them
-  
-  //the stuff that will go on the face
-  fill(255,0,0); 
-  ellipse(noseX, noseY, d); //(x,y,width) nose :)
-  fill(0,0,255);
-  ellipse(eyerX,eyerY, d); // right eye:)
-  fill(0,0,255);
-  ellipse(eyelX,eyelY, d)
-}
-
+//this function tells where each key point is 
 function gotPoses(poses){
   if (poses.length > 0) {
    //person 1 (aka 0 cuz its programming)-> the pose of that person-> and within that which body part-> position of the body part -> and then we want the x or y value
@@ -56,4 +39,24 @@ function gotPoses(poses){
     eyelY = lerp(eyelY, elY, 0.5);
   }
 }
+
+function draw() {
+  //image(video,0,0); //image (content, x coor , y coor)
+  let d = dist(noseX, noseY, eyerX, eyerY); //makes stay rationed in the Z direction
+   //dist calculates the distance between the values u input using this equation d=√((x_2-x_1)²+(y_2-y_1)²)
+  //console.log(d);
+  //making the filter will make it into buttons so will have to use document .getlelement stuff and inside functions,
+  //and withing them if then statements within them
+  
+  //the stuff that will go on the face
+  fill(255,0,0); 
+  ellipse(noseX, noseY, d); //(x,y,width) nose :)
+  fill(0,0,255);
+  ellipse(eyerX,eyerY, d); // right eye:)
+  fill(0,0,255);
+  ellipse(eyelX,eyelY, d) //left eye :)
+  
+}
+// console.log("hello world");
+
   
